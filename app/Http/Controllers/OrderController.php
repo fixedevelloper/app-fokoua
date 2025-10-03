@@ -223,7 +223,7 @@ class OrderController extends Controller
             'order_id' => $order->id,
             'status' => $order->status,
         ]));
-        return response()->json(['message' => 'Commande mise à jour avec succès']);
+        return Helpers::success(['message' => 'Commande mise à jour avec succès']);
         }
         catch (\Exception $e) {
             return Helpers::error($e->getMessage());
