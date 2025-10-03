@@ -219,10 +219,10 @@ class OrderController extends Controller
         ]);
 
         $order->update($request->only(['status', 'table_id']));
-        broadcast(new GenericEvent('order.updated', [
+/*        broadcast(new GenericEvent('order.updated', [
             'order_id' => $order->id,
             'status' => $order->status,
-        ]));
+        ]));*/
         return Helpers::success(['message' => 'Commande mise à jour avec succès']);
         }
         catch (\Exception $e) {
