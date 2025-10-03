@@ -172,7 +172,7 @@ class OrderItemController extends Controller
         ]);
 
 
-        broadcast(new NotificationEvent($notification));
+       // broadcast(new NotificationEvent($notification));
  /*       broadcast(new OrderUpdatedEvent($order->id,
             $order->status,
             'admin',
