@@ -189,8 +189,8 @@ class OrderController extends Controller
 
             return Helpers::success('Commande créée avec succès');
         }
-        catch (ValidationException $e) {
-            return Helpers::error($e->errors());
+        catch (\Exception $e) {
+            return Helpers::error($e->getMessage());
         }
     }
 
@@ -209,6 +209,8 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
+        try {
+
         $order = Order::findOrFail($id);
 
         $request->validate([
@@ -222,6 +224,10 @@ class OrderController extends Controller
             'status' => $order->status,
         ]));
         return response()->json(['message' => 'Commande mise à jour avec succès']);
+        }
+        catch (\Exception $e) {
+            return Helpers::error($e->getMessage());
+        }
     }
 
     /**

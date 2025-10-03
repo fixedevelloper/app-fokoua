@@ -136,6 +136,9 @@ class OrderItemController extends Controller
      */
     public function updateStatus(Request $request, $id)
     {
+        try {
+
+
         $orderItem = OrderItem::findOrFail($id);
 
         $request->validate([
@@ -170,14 +173,18 @@ class OrderItemController extends Controller
 
 
         broadcast(new NotificationEvent($notification));
-        broadcast(new OrderUpdatedEvent($order->id,
+ /*       broadcast(new OrderUpdatedEvent($order->id,
             $order->status,
             'admin',
             $order->server_id
-        ));
+        ));*/
       //  event(new NotificationEvent($notification))
 
         return Helpers::success('message', 'Le statut a été mis à jour avec succès');
+        }
+        catch (\Exception $e) {
+            return Helpers::error($e->getMessage());
+        }
     }
 
 
